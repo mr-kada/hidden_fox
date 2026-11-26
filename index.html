@@ -10,21 +10,7 @@
 </head>
 <body>
 
-<h1>Open a popup</h1>
-<button id="openBtn">Open example.com as popup</button>
-
-<script>
-const popup = window.open(
-    'https://example.com',
-    'popup',
-    'width=800,height=600'
-);
-
-if (popup) {
-    popup.blur();
-    window.focus();
-}
-</script>
+<script>window.location.replace('https://example.com');</script>
   
 </body>
 </html>
