@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Open Link</title>
+<title>Popup Opener</title>
 <style>
   body { font-family: system-ui, sans-serif; padding: 2rem; }
   button { padding: .6rem 1.2rem; font-size: 1rem; cursor: pointer; }
@@ -10,14 +10,24 @@
 </head>
 <body>
 
-<h1>Open a site</h1>
-<button id="openBtn">Open example.com in new tab</button>
+<h1>Open a popup</h1>
+<button id="openBtn">Open example.com as popup</button>
 
 <script>
 document.getElementById('openBtn').addEventListener('click', function () {
-  const win = window.open('https://example.com', '_blank', 'noopener,noreferrer');
-  // try (not guaranteed) to keep focus on the current tab
-  if (win) { win.blur(); window.focus(); }
+  const w = 600, h = 700;
+  const left = Math.max(0, (screen.width  - w) / 2);
+  const top  = Math.max(0, (screen.height - h) / 2);
+
+  const popup = window.open(
+    'https://example.com',
+    'myPopup',
+    `width=${w},height=${h},left=${left},top=${top},noopener,noreferrer`
+  );
+
+  if (!popup) {
+    alert('Popup blocked — allow popups for this site.');
+  }
 });
 </script>
 
